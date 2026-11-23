@@ -12,16 +12,9 @@
 
 ---
 
-## 合作与联系
+## 反馈与贡献
 
-欢迎体验反馈、平台适配共建、上架渠道合作。
-
-| 方式 | 联系 |
-|---|---|
-| **微信** | `brightwise2020` |
-| **GitHub** | [@owlteam990](https://github.com/owlteam990) |
-
-加好友请备注「SeedCast Skill」。
+欢迎通过 GitHub Issue / PR 反馈体验、共建平台适配：[@owlteam990](https://github.com/owlteam990)。
 
 ---
 
@@ -121,13 +114,6 @@ node scripts/publish.mjs --platform zhihu --account <id> \
 
 ---
 
-## 上架目标
-
-- [WorkBuddy 开放平台 · 技能](https://open.workbuddy.cn/docs/skill)
-- [Qoder Marketplace](https://qoder.com/zh/marketplace)
-
----
-
 ## 许可证
 
 [Apache License 2.0](./LICENSE) — 可商用，保留版权与变更声明。
@@ -137,5 +123,4 @@ node scripts/publish.mjs --platform zhihu --account <id> \
 ## 相关链接
 
 - Skill：https://github.com/owlteam990/seedcast-skill  
-- 桌面 SeedCast：https://github.com/owlteam990/seedcast  
-- 合作微信：`brightwise2020`
+- 桌面 SeedCast：https://github.com/owlteam990/seedcast

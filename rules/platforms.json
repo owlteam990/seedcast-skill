@@ -1,0 +1,176 @@
+{
+  "$schema": "./platforms.schema.json",
+  "updatedAt": "2026-11-23",
+  "note": "硬规则：供 scripts/check-rules.mjs 使用。软规则见 references/platforms/*.md。来源冲突时以本文件为准。",
+  "platforms": {
+    "wechat-mp": {
+      "displayName": "微信公众号",
+      "variants": {
+        "article": {
+          "titleMaxChars": 64,
+          "authorMaxChars": 8,
+          "digestMaxChars": 120,
+          "bodyMaxChars": 50000,
+          "minImages": 0,
+          "coverRecommended": { "width": 900, "height": 383, "ratio": "2.35:1" },
+          "notes": "SeedCast 默认写草稿；正式群发/发表需用户在公众平台确认。"
+        }
+      },
+      "sources": [
+        "code/plugins/wechat-mp/NOTES.md",
+        "运营常识：标题64/摘要120/正文5万字（社区汇总，需持续核对）"
+      ]
+    },
+    "xiaohongshu": {
+      "displayName": "小红书",
+      "variants": {
+        "imageText": {
+          "titleMaxChars": 20,
+          "bodyMaxChars": 1000,
+          "minImages": 1,
+          "topicsSuggestedMax": 10,
+          "notes": "创作者中心图文笔记；强制至少 1 张本地图。"
+        },
+        "article": {
+          "titleMaxChars": 64,
+          "bodyMinChars": 0,
+          "minImages": 0,
+          "notes": "写长文；不强制配图。标题上限以创作者中心实测为准。"
+        }
+      },
+      "sources": ["code/plugins/xiaohongshu/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "zhihu": {
+      "displayName": "知乎",
+      "variants": {
+        "article": {
+          "titleMaxChars": 100,
+          "minImages": 0,
+          "topicsSuggested": true,
+          "coverOptional": true,
+          "notes": "写文章；封面可选，无封面时尽量从正文配图选取。"
+        },
+        "pin": {
+          "titleMaxChars": 0,
+          "bodyMaxChars": 2000,
+          "minImages": 0,
+          "notes": "想法；偏短。"
+        },
+        "question": {
+          "titleMaxChars": 50,
+          "bodyMaxChars": 5000,
+          "notes": "提问题；本产品不做需填写问题 ID 的回答发布。"
+        }
+      },
+      "sources": ["code/plugins/zhihu/NOTES.md", "publish-core 专栏草稿 API 2026-11-23"]
+    },
+    "csdn": {
+      "displayName": "CSDN",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 100,
+          "minImages": 0,
+          "tagsOptional": true,
+          "notes": "Skill/桌面均可写 Markdown 草稿箱；正式发表在编辑器内人工确认。"
+        }
+      },
+      "sources": ["code/plugins/csdn/NOTES.md", "publish-core 实测 2026-11-23"]
+    },
+    "jianshu": {
+      "displayName": "简书",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 50,
+          "minImages": 0,
+          "notes": "写作台草稿；可选 notebookId。账号冻结时 API 返回 9902。"
+        }
+      },
+      "sources": ["code/plugins/jianshu/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "baijiahao": {
+      "displayName": "百家号",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 64,
+          "minImages": 0,
+          "notes": "文章草稿；正式发表在百家号后台确认。"
+        }
+      },
+      "sources": ["code/plugins/baijiahao/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "toutiao": {
+      "displayName": "今日头条",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 64,
+          "minImages": 0,
+          "coverOptional": true,
+          "notes": "页内签名写入；save=0 常 7050，失败回退 save=1；禁止假成功 pgc_id=0。"
+        }
+      },
+      "sources": ["code/plugins/toutiao/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "weibo": {
+      "displayName": "微博",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 64,
+          "minImages": 0,
+          "notes": "头条文章草稿；正式发表在编辑器确认。"
+        }
+      },
+      "sources": ["code/plugins/weibo/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "bilibili": {
+      "displayName": "B站",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 80,
+          "minImages": 0,
+          "notes": "专栏草稿；可选 tid 分区，缺省 4。"
+        }
+      },
+      "sources": ["code/plugins/bilibili/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "douyin": {
+      "displayName": "抖音",
+      "variants": {
+        "article": {
+          "titleMaxChars": 64,
+          "bodyMinChars": 20,
+          "minImages": 0,
+          "notes": "创作者中心发文；暂存草稿；UI 改版频繁。"
+        },
+        "imageText": {
+          "titleMaxChars": 55,
+          "minImages": 1,
+          "notes": "图文上传页；强制本地图。"
+        }
+      },
+      "sources": ["code/plugins/douyin/NOTES.md", "publish-core 2026-11-23"]
+    },
+    "x": {
+      "displayName": "X（Twitter）",
+      "variants": {
+        "post": {
+          "titleMaxChars": 0,
+          "bodyMaxChars": 280,
+          "minImages": 0,
+          "notes": "标题+正文合并计字；可用 --text 覆盖。OAuth 1.0a。"
+        }
+      },
+      "sources": ["publish-core X API 2026-11-23"]
+    },
+    "youtube": {
+      "displayName": "YouTube",
+      "variants": {
+        "video": {
+          "titleMaxChars": 100,
+          "minImages": 0,
+          "notes": "需本地视频 ≤512MB；默认 privacy=private；描述可空。"
+        }
+      },
+      "sources": ["publish-core YouTube Data API v3 2026-11-23"]
+    }
+  }
+}

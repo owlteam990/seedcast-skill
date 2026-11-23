@@ -48,6 +48,7 @@ function usage() {
     [--appid wx... --appsecret ...]   # wechat-mp
     [--apikey --apisecret --access-token --access-token-secret]  # x
     [--client-id --client-secret --refresh-token]  # youtube
+    [--username --token --blog-name]  # cnblogs MetaWeblog（可选；也可用 Cookie）
     [--status unknown|logged_in|expired]
   node scripts/accounts.mjs edit --id <uuid> [--name ...] [--status ...] \\
     [--appid ... --appsecret ...]
@@ -55,7 +56,7 @@ function usage() {
   node scripts/accounts.mjs check --id <uuid> | --platform <已支持平台>
   node scripts/accounts.mjs open-login --id <uuid>
 
-数据目录：~/.seedcast。publishSupported 见 list；Cookie 用 open-login；x/youtube/wechat 用凭证。`);
+数据目录：~/.seedcast。publishSupported 见 list；Cookie 用 open-login；x/youtube/wechat 用凭证；cnblogs 支持 Cookie 或 MetaWeblog。`);
 }
 
 async function enrichCheck(core, accounts, force) {
@@ -89,6 +90,8 @@ async function enrichCheck(core, accounts, force) {
       row.sessionOk = await core.checkXSession(acc);
     } else if (acc.pluginId === 'youtube') {
       row.sessionOk = await core.checkYouTubeSession(acc);
+    } else if (acc.pluginId === 'cnblogs') {
+      row.sessionOk = await core.checkCnblogsSession(acc);
     } else {
       row.sessionOk = null;
       row.sessionNote =
@@ -208,6 +211,37 @@ async function cmdAdd(core, args) {
     return;
   }
 
+  if (platform === 'cnblogs') {
+    const username = args.username;
+    const token = args.token;
+    const blogName = args['blog-name'] || args.blogname || args.blog;
+    // 提供完整 MetaWeblog 三元组 → 凭证绑定；否则登记 Cookie 账号
+    if (username || token || blogName) {
+      if (!username || !token || !blogName) {
+        fail(
+          'cnblogs MetaWeblog 需同时提供 --username --token --blog-name；或省略三者改用 Cookie（open-login）',
+        );
+      }
+      const { account, loggedIn } = await core.bindCnblogsAccount({
+        name,
+        username,
+        token,
+        blogName,
+      });
+      print({
+        ok: true,
+        action: 'add',
+        loggedIn,
+        account,
+        dataDir: core.getDefaultDataDir(),
+        message:
+          '博客园 MetaWeblog 凭证已校验。勿把 Token 打进聊天；默认发布为草稿。',
+      });
+      return;
+    }
+    // fallthrough → registerAccount + open-login
+  }
+
   const status = args.status || 'unknown';
   if (!['unknown', 'logged_in', 'expired'].includes(status)) {
     fail('status 须为 unknown | logged_in | expired');
@@ -310,6 +344,9 @@ async function cmdOpenLogin(core, args) {
   }
   if (account.pluginId === 'wechat-mp') {
     fail('公众号请用 add/edit 绑定 AppID/AppSecret，无需扫码页');
+  }
+  if (account.pluginId === 'x' || account.pluginId === 'youtube') {
+    fail(`${account.pluginId} 使用 API 凭证绑定，无需扫码页`);
   }
   const loginUrl =
     (core.PLATFORM_LOGIN_URLS && core.PLATFORM_LOGIN_URLS[account.pluginId]) ||

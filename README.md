@@ -36,11 +36,16 @@
 
 ### 已支持平台（草稿优先）
 
-微信公众号 · 知乎 · CSDN · 简书 · 百家号 · 今日头条 · 微博 · B站 · 抖音 · 小红书 · X · YouTube  
+微信公众号 · 知乎 · CSDN · 简书 · 百家号 · 今日头条 · 微博 · B站 · 抖音 · 小红书 · X · YouTube · 博客园  
 
 规则总表：[`references/platforms/rules-overview.md`](./references/platforms/rules-overview.md)
 
 ---
+
+## 本仓（multipublisher）布局
+
+完整 Skill 包在 `skill/seedcast-content/`；上架 / 独立仓库内容与之对应。  
+独立仓库：https://github.com/owlteam990/seedcast-skill
 
 ## 目录
 

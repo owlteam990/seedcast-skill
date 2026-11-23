@@ -19,5 +19,6 @@
 | douyin | `douyin.md` | article / imageText |
 | x | `x.md` | post |
 | youtube | `youtube.md` | video |
+| cnblogs | `cnblogs.md` | draft |
 
 未列出的平台：先查 SeedCast `code/plugins/<id>/NOTES.md`，再补本目录、总表与 `platforms.json`。

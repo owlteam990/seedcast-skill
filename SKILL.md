@@ -66,7 +66,7 @@ node scripts/accounts.mjs delete --id <uuid>
 - 增删改前先 `list`，改/删时向用户确认平台与名称。  
 - **禁止**在回复中完整回显 AppSecret。  
 - `login.mjs` = `accounts add` 别名。  
-- Skill **发布**已支持桌面已接平台（含 Cookie / 页面自动化 / `x` / `youtube`）。凭证平台用 `accounts add`；扫码用 `open-login`。
+- Skill **发布**已支持桌面已接平台（含 Cookie / 页面自动化 / `x` / `youtube` / `cnblogs`）。`cnblogs` 可用 Cookie（`open-login`）或 MetaWeblog 令牌；其它凭证平台用 `accounts add`，扫码用 `open-login`。
 
 ## 自进化（必做）
 

@@ -74,6 +74,8 @@ async function main() {
   node scripts/publish.mjs --platform youtube --account <id> \\
     --title "..." --video-file ./clip.mp4 [--body-file desc.md] \\
     [--privacy private|unlisted|public]
+  node scripts/publish.mjs --platform cnblogs --account <id> \\
+    --title "..." --body-file ./draft.md [--tags a,b] [--categories "..."]
 
 门禁：
   写稿前须 memory.mjs brief（2h 内盖章）；可用 --skip-prewrite-gate 跳过
@@ -313,6 +315,16 @@ async function main() {
       videoFile: args['video-file'] || args.video,
       privacyStatus: args.privacy || args['privacy-status'] || 'private',
       categoryId: args['category-id'],
+      onInfo,
+    });
+  } else if (platform === 'cnblogs') {
+    result = await core.publishCnblogsDraft({
+      profileDir: account.profileDir,
+      title,
+      markdown,
+      tags: args.tags,
+      categories: args.categories,
+      publish: false,
       onInfo,
     });
   } else {

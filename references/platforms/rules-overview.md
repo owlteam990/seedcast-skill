@@ -32,6 +32,7 @@ node scripts/memory.mjs rules recall --platform <id>
 | douyin | imageText | 55 | 短文案 | ≥1 本地图 | 草稿 | 必须本地图 |
 | x | post | — | 标题+正文压 ≤280 | 0 | 发帖 | OAuth 1.0a；可用 `--text` |
 | youtube | video | — | 描述可空 | 视频文件 | private | ≤512MB；OAuth refresh |
+| cnblogs | draft | 100 | 非空（Markdown） | 0 | 草稿 | Cookie（需已开通博客）或 MetaWeblog；默认草稿 |
 
 ---
 
@@ -76,6 +77,9 @@ node scripts/memory.mjs rules recall --platform <id>
 
 ### YouTube
 标题+描述服务检索；隐私默认 private。
+
+### 博客园
+技术随笔向；Markdown；分类可用 `[随笔分类]xxx`；默认草稿。
 
 ---
 

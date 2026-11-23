@@ -171,6 +171,23 @@
         }
       },
       "sources": ["publish-core YouTube Data API v3 2026-11-23"]
+    },
+    "cnblogs": {
+      "displayName": "博客园",
+      "variants": {
+        "draft": {
+          "titleMaxChars": 100,
+          "minImages": 0,
+          "notes": "Cookie：i.cnblogs.com/api/posts 草稿（需已开通博客）；或 MetaWeblog Token。需 open-login 或绑定令牌。"
+        }
+      },
+      "sources": [
+        "https://account.cnblogs.com/user/userinfo",
+        "https://i.cnblogs.com/api/posts",
+        "https://rpc.cnblogs.com/metaweblog/",
+        "https://i.cnblogs.com/settings#enableServiceAccess",
+        "publish-core 2026-11-23"
+      ]
     }
   }
 }
